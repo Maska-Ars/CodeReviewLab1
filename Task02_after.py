@@ -21,17 +21,17 @@ def double_file_size(filename):
     numbers = []
     with open(filename, "rb") as f:
         while True:
-            data = f.read(4)  # читаем 4 байта (int)
-            if not data:  # если строка пустая(конец файла)
+            data = f.read(4)  # читаем 4 байт, чтобы получить int
+            if not data:
                 break
-            number = struct.unpack("i", data)[0]  # преобразуем байты в целое число
+            number = struct.unpack("i", data)[0]
             numbers.append(number)
 
     # запись элементов в обратном порядке в конец файла
     with open(filename, "ab") as f:
         for i in range(len(numbers) - 1, -1, -1):
             number = numbers[i]
-            data = struct.pack("i", number)  # преобразуем целое число обратно в байты
+            data = struct.pack("i", number)
             f.write(data)
 
     print("Файл успешно удвоен.")
@@ -42,7 +42,7 @@ def print_file(filename):
     numbers = []
     with open(filename, 'rb') as f:
         while True:
-            bytes_read = f.read(4)  # чтение 4 байт
+            bytes_read = f.read(4)
             if not bytes_read:
                 break
             number = struct.unpack('i', bytes_read)[0]

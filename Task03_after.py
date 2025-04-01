@@ -19,7 +19,7 @@ def read_floats_from_binary_file(filename):
     numbers = []
     with open(filename, 'rb') as file:
         while True:
-            byte = file.read(4)  # Читаем 4 байта (размер float)
+            byte = file.read(4)  # Читаем 4 байта, чтобы получить float
             if not byte:
                 break
             number = struct.unpack('f', byte)[0]
@@ -54,7 +54,6 @@ def merge_sorted_files(file1, file2, output_file):
         merged_numbers.append(numbers2[j])
         j += 1
 
-    # Записываем объединенные числа в выходной файл
     write_floats_to_binary_file(output_file, merged_numbers)
 
 
